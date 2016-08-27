@@ -25,9 +25,9 @@ NUMBER_OF_MONTHS=$3
 #
 #	to calculate interest rate like so:
 #
-#		rate	= (end/start)^(1/n)
+#		rate	= (end/start)^(1/n) - 1
 #
-#			= e( (1/n) * ln(end/start) )
+#			= e( (1/n) * ln(end/start) )  - 1
 #
 
 DELTA=$(echo "$ENDING_BALANCE - $STARTING_BALANCE" | bc)
