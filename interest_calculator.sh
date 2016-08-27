@@ -30,12 +30,13 @@ NUMBER_OF_MONTHS=$3
 #			= e( (1/n) * ln(end/start) )
 #
 
-DELTA=$(echo "scale=5; $ENDING_BALANCE - $STARTING_BALANCE" | bc)
-M=$(echo "scale=5; e((1/$NUMBER_OF_MONTHS) * l($ENDING_BALANCE/$STARTING_BALANCE)) - 1" |bc -l)
-Y=$(echo "scale=5; (1 + $M)^12 - 1" | bc)
+DELTA=$(echo "$ENDING_BALANCE - $STARTING_BALANCE" | bc)
+RATIO=$(echo "scale=5;$ENDING_BALANCE/$STARTING_BALANCE" | bc)
+M=$(echo "e((1/$NUMBER_OF_MONTHS) * l($RATIO)) - 1" |bc -l)
+Y=$(echo "(1 + $M)^12 - 1" | bc)
 
-MPERCENT=$(echo "scale=1; $M*100" |bc)
-YPERCENT=$(echo "scale=1; $Y*100" |bc)
+MPERCENT=$(echo "$M*100" |bc)
+YPERCENT=$(echo "$Y*100" |bc)
 
 printf "Starting balance = %.2f\n" $STARTING_BALANCE
 printf "Ending balance   = %.2f\n" $ENDING_BALANCE
